@@ -2,7 +2,7 @@
 -behaviour(gen_server).
 -define(INITIAL_DELAY_MS, 1000).
 -define(SERVER, ?MODULE).
--define(STAT_URL, "http://pcha024-euw1a.lekane.net:10890/chatserver/dialoguechat?op=queue&domain=Sonera").
+-define(STAT_URL, "http://some.address/").
 -define(STAT_CHECK_INTERVAL_MS, 60000).
 
 %% ------------------------------------------------------------------
@@ -55,7 +55,7 @@ handle_info(_Info, State) ->
     {noreply, State}.
 
 print_stats(Result) ->
-    {{HttpVersion, 200, ReasonPhrase}, Headers, Body} = Result,
+    {{_, 200, _}, _, Body} = Result,
     JsonMap = jsx:decode(Body, [return_maps]),
     OpenSessions = maps:get(<<"OPEN">>, maps:get(<<"sessions">>, JsonMap)),
     InQueue = maps:get(<<"INITIAL">>, maps:get(<<"integrationStatus">>, JsonMap)),
