@@ -2,7 +2,7 @@
 -behaviour(gen_server).
 -define(INITIAL_DELAY_MS, 1000).
 -define(SERVER, ?MODULE).
--define(STAT_URL, "http://pcha024-euw1a.lekane.net:10890/chatserver/dialoguechat?op=queue&domain=Sonera").
+-define(STAT_URL, "http://some.url").
 -define(STAT_CHECK_INTERVAL_MS, 20000).
 
 %% ------------------------------------------------------------------
