@@ -2,8 +2,8 @@
 -behaviour(gen_server).
 -define(INITIAL_DELAY_MS, 1000).
 -define(SERVER, ?MODULE).
--define(STAT_URL, "http://some.address/").
--define(STAT_CHECK_INTERVAL_MS, 60000).
+-define(STAT_URL, "http://pcha024-euw1a.lekane.net:10890/chatserver/dialoguechat?op=queue&domain=Sonera").
+-define(STAT_CHECK_INTERVAL_MS, 20000).
 
 %% ------------------------------------------------------------------
 %% API Function Exports
@@ -60,7 +60,8 @@ print_stats(Result) ->
     OpenSessions = maps:get(<<"OPEN">>, maps:get(<<"sessions">>, JsonMap)),
     InQueue = maps:get(<<"INITIAL">>, maps:get(<<"integrationStatus">>, JsonMap)),
     Slots = maps:get(<<"availableAgents">>, JsonMap),
-    io:format("~w: open sessions: ~w, in queue: ~w, slots: ~w~n", [(erlang:localtime()), OpenSessions, InQueue, Slots]).
+    io:format("~s open sessions: ~w, in queue: ~w, slots: ~w~n",
+        [qdate:format("Y-m-d H:i:s",(erlang:localtime())), OpenSessions, InQueue, Slots]).
 
 terminate(_Reason, _State) ->
     ok.
