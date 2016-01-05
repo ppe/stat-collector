@@ -2,6 +2,7 @@
 -behaviour(gen_server).
 -define(INITIAL_DELAY_MS, 1000).
 -define(SERVER, ?MODULE).
+%% URL of stat endpoint
 -define(STAT_URL, "http://some.url").
 -define(STAT_CHECK_INTERVAL_MS, 20000).
 
